@@ -1,4 +1,4 @@
-# multilngual_bias
+# multilingual_bias
 
 ## Required Datasets
 for the different debiasing techniques, different wikipedia data is required.
