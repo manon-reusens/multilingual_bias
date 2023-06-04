@@ -705,10 +705,16 @@ def main():
         logger.info(f"Applying {data_args.counterfactual_augmentation} CDA.")
 
         # Load the bias attribute words.
-        bias_attribute_words = _create_bias_attribute_words(
-            f"{data_args.persistent_dir}/data/bias_attribute_words.json",
-            bias_type=data_args.counterfactual_augmentation,
-        )
+        if 'wikipedia-10.txt' in data_args.train_file:
+            bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words.json", bias_type=data_args.counterfactual_augmentation)
+        elif 'wiki-fr_sample_10.txt' in data_args.train_file:
+            bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_fr.json", bias_type=data_args.counterfactual_augmentation)
+        elif 'wiki-de_sample_10.txt' in data_args.train_file:
+            bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_de.json", bias_type=data_args.counterfactual_augmentation)
+        elif 'wiki-nl_sample_10.txt' in data_args.train_file:
+            bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_nl.json", bias_type=data_args.counterfactual_augmentation)
+        else:
+            print('The given train text file is unknown.')
 
         if data_args.counterfactual_augmentation == "gender":
             counterfactual_augmentation_func = partial(
