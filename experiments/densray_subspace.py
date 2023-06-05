@@ -1,6 +1,10 @@
 import argparse
 import os
 import numpy as np
+import os
+import sys
+sys.path.append('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
+os.chdir('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
 
 import torch
 import transformers
@@ -13,7 +17,7 @@ from bias_bench.util import generate_experiment_id
 
 thisdir = os.path.dirname(os.path.realpath(__file__))
 parser = argparse.ArgumentParser(
-    description="Computes the bias subspace for SentenceDebias."
+    description="Computes the bias subspace for Densray."
 )
 parser.add_argument(
     "--persistent_dir",
@@ -68,7 +72,7 @@ parser.add_argument(
 
 if __name__ == "__main__":
     args = parser.parse_args()
-
+    print('Densray')
     experiment_id = generate_experiment_id(
         name="densray",
         model=args.model,
