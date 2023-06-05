@@ -4,8 +4,8 @@ import json
 
 import transformers
 import sys
-sys.path.append('/data/leuven/344/vsc34470/bias-bench/')
-os.chdir('/data/leuven/344/vsc34470/bias-bench/')
+sys.path.append('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
+os.chdir('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
 print(os.listdir())
 from bias_bench.benchmark.crows import CrowSPairsRunner
 from bias_bench.model import models

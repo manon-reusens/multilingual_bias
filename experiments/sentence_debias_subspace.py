@@ -1,5 +1,8 @@
 import argparse
 import os
+import sys
+sys.path.append('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
+os.chdir('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
 
 import torch
 import transformers
