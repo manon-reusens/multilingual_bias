@@ -46,6 +46,29 @@ class GPT2LMHeadModel:
     def __new__(self, model_name_or_path):
         return transformers.GPT2LMHeadModel.from_pretrained(model_name_or_path)
 
+class _DensrayModel:
+    def __init__(self, model_name_or_path, bias_direction):
+        def _hook(module, input_, output, bias_direction):
+            # Debias the last hidden state.
+            x = output["last_hidden_state"]
+            print(x.size())
+            # Ensure that everything is on the same device.
+            bias_direction = bias_direction.to(x.device)
+            print(bias_direction.size())
+            #Debias the representations
+            for t in range(x.size(1)):
+                vec=torch.mm(x[:, t],bias_direction)
+                vec[:,0]=0
+                x[:,t]=torch.mm(vec,bias_direction.T)
+            
+            # Update the output.
+            output["last_hidden_state"] = x
+
+            return output
+
+        self.func = partial(_hook, bias_direction=bias_direction)
+
+
 
 class _SentenceDebiasModel:
     def __init__(self, model_name_or_path, bias_direction):
@@ -54,7 +77,7 @@ class _SentenceDebiasModel:
             x = output["last_hidden_state"]
 
             # Ensure that everything is on the same device.
-            bias_direction = bias_direction.to(x.device)
+            bias_direction = bias_direction[1].to(x.device)
 
             # Debias the representation.
             for t in range(x.size(1)):
@@ -89,6 +112,14 @@ class _INLPModel:
 
         self.func = partial(_hook, projection_matrix=projection_matrix)
 
+class DensrayDebiasBertModel(_DensrayModel):
+    def __new__(self, model_name_or_path, bias_direction):
+        super().__init__(self, model_name_or_path, bias_direction)
+        model = transformers.BertModel.from_pretrained(model_name_or_path)
+        for name, param in model.named_parameters():
+            print(name)
+        model.encoder.register_forward_hook(self.func)
+        return model
 
 class SentenceDebiasBertModel(_SentenceDebiasModel):
     def __new__(self, model_name_or_path, bias_direction):
@@ -121,6 +152,12 @@ class SentenceDebiasGPT2Model(_SentenceDebiasModel):
         model.register_forward_hook(self.func)
         return model
 
+class DensrayDebiasBertForMaskedLM(_DensrayModel):
+    def __new__(self, model_name_or_path, bias_direction):
+        super().__init__(self, model_name_or_path, bias_direction)
+        model = transformers.BertForMaskedLM.from_pretrained(model_name_or_path)
+        model.bert.register_forward_hook(self.func)
+        return model
 
 class SentenceDebiasBertForMaskedLM(_SentenceDebiasModel):
     def __new__(self, model_name_or_path, bias_direction):

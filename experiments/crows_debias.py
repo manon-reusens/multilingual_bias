@@ -1,6 +1,9 @@
 import argparse
 import os
 import json
+import sys
+sys.path.append('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
+os.chdir('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
 
 import torch
 import transformers
@@ -24,6 +27,7 @@ parser.add_argument(
     type=str,
     default="SentenceDebiasBertForMaskedLM",
     choices=[
+        "DensrayDebiasBertForMaskedLM",
         "SentenceDebiasBertForMaskedLM",
         "SentenceDebiasAlbertForMaskedLM",
         "SentenceDebiasRobertaForMaskedLM",
@@ -142,17 +146,26 @@ if __name__ == "__main__":
     print(f" - seed: {args.seed}")
     print(f" - lang_eval: {args.lang_eval}")
     print(f" - lang_debias: {args.lang_debias}")
-
+    s=''
     kwargs = {}
     if args.bias_direction is not None:
         # Load the pre-computed bias direction for SentenceDebias.
-        bias_direction = torch.load(args.bias_direction)
+        if args.model=='DensrayDebiasBertForMaskedLM':
+            bias_direction=torch.load(args.bias_direction)
+            bias_direction=bias_direction
+            print(bias_direction.size())
+        else:   
+            bias_direction = torch.load(args.bias_direction)
+        
         kwargs["bias_direction"] = bias_direction
 
     if args.projection_matrix is not None:
         # Load the pre-computed projection matrix for INLP.
         projection_matrix = torch.load(args.projection_matrix)
         kwargs["projection_matrix"] = projection_matrix
+        k=args.projection_matrix
+        s=k.replace('/scratch/leuven/344/vsc34470/bias-eval/results/projection_matrix/projection_m-BertModel_c-bert-base-multilingual-uncased_t-','')
+        s=s.replace('.pt','')
 
     # Load model and tokenizer. `load_path` can be used to override `model_name_or_path`.
     model = getattr(models, args.model)(
@@ -201,6 +214,6 @@ if __name__ == "__main__":
     print(f"Metric: {results}")
 
     os.makedirs(f"{args.persistent_dir}/results/crows", exist_ok=True)
-    df_data_with_mask_probs.to_csv(f"{args.persistent_dir}/results/crows/{experiment_id}.csv")
-    with open(f"{args.persistent_dir}/results/crows/{experiment_id}.json", "w") as f:
+    df_data_with_mask_probs.to_csv(f"{args.persistent_dir}/results/crows/{experiment_id}{s}.csv")
+    with open(f"{args.persistent_dir}/results/crows/{experiment_id}{s}.json", "w") as f:
         json.dump(results, f)

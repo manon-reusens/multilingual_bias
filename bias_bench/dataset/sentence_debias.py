@@ -159,6 +159,7 @@ class _SentenceDebiasDataset:
         elif self._lang_debias =='de':
             with open(f"{self._persistent_dir}/data/bias_attribute_words_de.json", "r") as f:
                 self._attribute_words = json.load(f)[self._bias_type]
+                print(self._attribute_words)
         elif self._lang_debias =='nl':
             with open(f"{self._persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
                 self._attribute_words = json.load(f)[self._bias_type]

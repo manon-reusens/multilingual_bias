@@ -41,7 +41,7 @@ parser.add_argument(
     action="store",
     type=str,
     default="bert-base-uncased",
-    choices=["bert-base-uncased",'bert-base-multilingual-cased', "albert-base-v2", "roberta-base", "gpt2"],
+    choices=["bert-base-uncased",'bert-base-multilingual-uncased','bert-base-multilingual-cased', "albert-base-v2", "roberta-base", "gpt2"],
     help="HuggingFace model name or path (e.g., bert-base-uncased). Checkpoint from which a "
     "model is instantiated.",
 )
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     data = load_sentence_debias_data(
         persistent_dir=args.persistent_dir, bias_type=args.bias_type, lang_debias=args.lang_debias
     )
-
+    
     # Load model and tokenizer.
     model = getattr(models, args.model)(args.model_name_or_path)
     model.eval()

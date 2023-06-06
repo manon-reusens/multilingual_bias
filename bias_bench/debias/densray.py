@@ -1,4 +1,5 @@
 from tqdm import tqdm 
+import torch
 
 class DensRay:
     def __init__(self, Lemb, Remb):
@@ -16,6 +17,7 @@ class DensRay:
             normalize_D: bool whether to normalize the difference vectors with l2 norm
         """
         #self.computeA_binary_part1(normalize_D=normalize_D)
+        print(type(self.lemb))
         self.A_equal = self.opsum(self.lemb) + self.opsum(self.remb)
         self.A_unequal = self.opsum(self.lemb, self.remb) + self.opsum(self.remb, self.lemb)
         self.computeA_binary_part2(weights=weights)

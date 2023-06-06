@@ -8,6 +8,7 @@ os.chdir('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
 
 import torch
 import transformers
+from tqdm import tqdm 
 
 from bias_bench.dataset import load_sentence_debias_data
 from bias_bench.debias import DensRay
@@ -40,7 +41,7 @@ parser.add_argument(
     action="store",
     type=str,
     default="bert-base-uncased",
-    choices=["bert-base-uncased",'bert-base-multilingual-cased', "albert-base-v2", "roberta-base", "gpt2"],
+    choices=["bert-base-uncased",'bert-base-multilingual-uncased', 'bert-base-multilingual-cased', "albert-base-v2", "roberta-base", "gpt2"],
     help="HuggingFace model name or path (e.g., bert-base-uncased). Checkpoint from which a "
     "model is instantiated.",
 )
@@ -96,13 +97,19 @@ if __name__ == "__main__":
 
     # Load model and tokenizer.
     model = getattr(models, args.model)(args.model_name_or_path)
+    #for name, param in model.named_parameters():
+    #    print(name)
+
     model.eval()
     tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path)
     #tokenize the examples (data['female_example] en data['male_example'])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
     all_embeddings_male = []
     all_embeddings_female = []
 
     n_batches = len(data) // args.batch_size
+    print(n_batches)
     for i in tqdm(range(n_batches), desc="Encoding gender examples"):
         offset = args.batch_size * i
 
@@ -149,7 +156,7 @@ if __name__ == "__main__":
 
         embedding_male /= torch.norm(embedding_male, dim=-1, keepdim=True)
         embedding_female /= torch.norm(embedding_female, dim=-1, keepdim=True)
-
+       
         all_embeddings_male.append(embedding_male.cpu().numpy())
         all_embeddings_female.append(embedding_female.cpu().numpy())
 
@@ -158,7 +165,8 @@ if __name__ == "__main__":
     all_embeddings_female = np.concatenate(all_embeddings_female, axis=0)
     #L, R = analogy.get_embeddings_from_cropus(corpus, layer)
     # compute densray
-    densray = DensRay(all_embeddings_male,all_embeddings_female)
+    print('now we will compute the bias dimensions')
+    densray = DensRay(torch.from_numpy(all_embeddings_male),torch.from_numpy(all_embeddings_female))
     densray.fit()
 
     print(

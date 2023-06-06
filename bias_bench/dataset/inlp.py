@@ -33,8 +33,8 @@ def _load_gender_data(persistent_dir,lang_debias):
     elif lang_debias=='fr':
         with open(f"{persistent_dir}/data/bias_attribute_words_fr.json", "r") as f:
             attribute_words = json.load(f)["gender"]
-    elif lang_debias=='du':
-        with open(f"{persistent_dir}/data/bias_attribute_words_du.json", "r") as f:
+    elif lang_debias=='de':
+        with open(f"{persistent_dir}/data/bias_attribute_words_de.json", "r") as f:
             attribute_words = json.load(f)["gender"]
     elif lang_debias=='nl':
         with open(f"{persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
@@ -245,8 +245,8 @@ def _load_religion_data(persistent_dir,lang_debias):
     elif lang_debias=='fr':
         with open(f"{persistent_dir}/data/bias_attribute_words_fr.json", "r") as f:
             attribute_words = json.load(f)["religion"]
-    elif lang_debias=='du':
-        with open(f"{persistent_dir}/data/bias_attribute_words_du.json", "r") as f:
+    elif lang_debias=='de':
+        with open(f"{persistent_dir}/data/bias_attribute_words_de.json", "r") as f:
             attribute_words = json.load(f)["religion"]
     elif lang_debias=='nl':
         with open(f"{persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
