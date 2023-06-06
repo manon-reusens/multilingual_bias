@@ -51,10 +51,11 @@ class _DensrayModel:
         def _hook(module, input_, output, bias_direction):
             # Debias the last hidden state.
             x = output["last_hidden_state"]
-            print(x.size())
+            #print(x.size())
+            
             # Ensure that everything is on the same device.
             bias_direction = bias_direction.to(x.device)
-            print(bias_direction.size())
+            #print(bias_direction.size())
             #Debias the representations
             for t in range(x.size(1)):
                 vec=torch.mm(x[:, t],bias_direction)
