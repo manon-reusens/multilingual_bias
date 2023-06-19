@@ -2,7 +2,7 @@ import json
 import random
 
 import nltk
-nltk.download('punkt',quiet=True,download_dir='/data/leuven/344/vsc34470/miniconda3/envs/gender_bias/share/nltk_data')
+nltk.download('punkt',quiet=True)
 from tqdm import tqdm
 
 
