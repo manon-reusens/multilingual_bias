@@ -5,3 +5,9 @@ scikit-learn==1.0.2
 nltk==3.7.0
 datasets==1.18.3
 accelerate==0.5.1
+numpy==1.21.6
+pandas==1.1.5
+argparse==1.1
+json==2.0.9
+tqdm==4.65.0
+csv==1.0
