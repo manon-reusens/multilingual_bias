@@ -9,7 +9,7 @@ for the different debiasing techniques, different wikipedia data is required.
 |Dataset | Download | Notes | Directory|
 |--------|----------|-------|----------|
 |Wikipedia 2.5 en |[Download](https://drive.google.com/file/d/15Cm8E9_ZfvBhztQwjlk0GuJIjkxQSt_V/view?usp=sharing)| English Wikipedia dump used for SentenceDebias and INLP. (Meade et al., 2021) |'data/text'|
-|Wikipedia 10 en  |[Download]()| English Wikipedia dump used for CDA and Dropout. (Meade et al., 2021) |'data/text'|
+|Wikipedia 10 en  |[Download](https://drive.google.com/file/d/1NbQPD5236_LOUiHikMlVvi53gi07u2kE/view?usp=sharing)| English Wikipedia dump used for CDA and Dropout. (Meade et al., 2021) |'data/text'|
 |Wikipedia 2.5 fr |[Download](https://drive.google.com/file/d/12M-ClC97-HtLHol9WDtV2-EKFOi2JFBP/view?usp=sharing)| French Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
 |Wikipedia 10 fr  |[Download](https://drive.google.com/file/d/1sfzULqSeOfbBk_OKqto9tCB8ETl0cd__/view?usp=sharing)| French Wikipedia dump used for CDA and Dropout. |'data/text'|
 |Wikipedia 2.5 de |[Download](https://drive.google.com/file/d/17Xt6rZO63pdtNA4wvZ6FKkfbUzo5hchw/view?usp=sharing)| German Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
