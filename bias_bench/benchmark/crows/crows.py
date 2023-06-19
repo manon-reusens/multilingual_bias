@@ -77,6 +77,9 @@ class CrowSPairsRunner:
         df_data = self._read_data(self._input_file)
         df_data['prob_mask_sent1']=np.nan
         df_data['prob_mask_sent2']=np.nan
+        df_data['score1']=np.nan
+        df_data['score2']=np.nan
+
 
         # Use GPU, if available.
         if self._is_self_debias:
@@ -138,7 +141,8 @@ class CrowSPairsRunner:
 
                     df_data['prob_mask_sent1'].iloc[index]=str(list_prob_mask1)
                     df_data['prob_mask_sent2'].iloc[index]=str(list_prob_mask2)
-
+                    df_data['score1'].iloc[index]=np.exp(score1)
+                    df_data['score2'].iloc[index]=np.exp(score2)
 
                     score1 = round(score1, 3)
                     score2 = round(score2, 3)
@@ -217,6 +221,8 @@ class CrowSPairsRunner:
 
                     df_data['prob_mask_sent1'].iloc[index]=str(list_prob_mask1)
                     df_data['prob_mask_sent2'].iloc[index]=str(list_prob_mask2)
+                    df_data['score1'].iloc[index]=np.exp(round(score1, 3))
+                    df_data['score2'].iloc[index]=np.exp(round(score2, 3))
 
 
                     score1 = round(score1, 3)
