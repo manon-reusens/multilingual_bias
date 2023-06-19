@@ -1,6 +1,10 @@
 # Investigating Bias in Multilingual Language Models: Cross-Lingual Transfer of Debiasing Techniques
 This GitHub repository contains the official source code for Investigating Bias in Multilingual Language Models: Cross-Lingual Transfer of Debiasing Techniques.
 
+## Installation
+$ conda create --name CrossLingualBias python=3.7
+$ conda activate CrossLingualBias
+$ pip install -r requirements.txt
 
 ## Required Datasets
 For the different debiasing techniques, different wikipedia data is required. These should be put in the appropriate directory.
