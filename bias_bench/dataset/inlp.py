@@ -250,26 +250,26 @@ def _load_religion_data(persistent_dir,lang_debias):
     # Load the bias attribute words.
     if lang_debias=='en':
         with open(f"{persistent_dir}/data/bias_attribute_words.json", "r") as f:
-            attribute_words = json.load(f)["race"]
+            attribute_words = json.load(f)["religion"]
         with open(f"{persistent_dir}/data/text/wikipedia-2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
 
     elif lang_debias=='fr':
         with open(f"{persistent_dir}/data/bias_attribute_words_fr.json", "r") as f:
-            attribute_words = json.load(f)["race"]
+            attribute_words = json.load(f)["religion"]
         with open(f"{persistent_dir}/data/text/wiki-fr_sample_2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
     elif lang_debias=='de':
         with open(f"{persistent_dir}/data/bias_attribute_words_de.json", "r") as f:
-            attribute_words = json.load(f)["race"]
+            attribute_words = json.load(f)["religion"]
         with open(f"{persistent_dir}/data/text/wiki-de_sample_2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
     elif lang_debias=='nl':
         with open(f"{persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
-            attribute_words = json.load(f)["race"]
+            attribute_words = json.load(f)["religion"]
         with open(f"{persistent_dir}/data/text/wiki-nl_sample_2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
