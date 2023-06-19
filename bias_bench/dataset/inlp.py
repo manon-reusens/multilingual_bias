@@ -62,7 +62,7 @@ def _load_gender_data(persistent_dir,lang_debias):
 
     for line in tqdm(lines, desc="Loading INLP data"):
         # Each line contains a paragraph of text.
-        sentences = nltk.sent_tokenize(line)
+        sentences = nltk.sent_tokenize(line.lower())
 
         for sentence in sentences:
             male_flag = False
@@ -190,7 +190,7 @@ def _load_race_data(persistent_dir,lang_debias):
 
     for line in tqdm(lines, desc="Loading INLP data"):
         # Each line contains a paragraph of text.
-        sentences = nltk.sent_tokenize(line)
+        sentences = nltk.sent_tokenize(line.lower())
 
         for sentence in sentences:
             race_flag = False
@@ -272,7 +272,7 @@ def _load_religion_data(persistent_dir,lang_debias):
 
     for line in tqdm(lines, desc="Loading INLP data"):
         # Each line contains a paragraph of text.
-        sentences = nltk.sent_tokenize(line)
+        sentences = nltk.sent_tokenize(line.lower())
 
         for sentence in sentences:
             religion_flag = False
