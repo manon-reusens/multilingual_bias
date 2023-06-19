@@ -98,7 +98,7 @@ if __name__ == "__main__":
     # Load model and tokenizer.
     model = getattr(models, args.model)(args.model_name_or_path)
     model.eval()
-    tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path, do_lower_case=True)
+    tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path)
 
     # Specify a padding token for batched SentenceDebias subspace computation for
     # GPT2.

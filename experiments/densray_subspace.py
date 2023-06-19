@@ -101,7 +101,7 @@ if __name__ == "__main__":
     #    print(name)
 
     model.eval()
-    tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path, do_lower_case=True)
+    tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path)
     #tokenize the examples (data['female_example] en data['male_example'])
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
