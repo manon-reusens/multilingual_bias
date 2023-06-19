@@ -8,14 +8,14 @@ For the different debiasing techniques, different wikipedia data is required. Th
 
 |Dataset | Download | Notes | Directory|
 |--------|----------|-------|----------|
-|Wikipedia 2.5 en |[Download](https://drive.google.com/file/d/15Cm8E9_ZfvBhztQwjlk0GuJIjkxQSt_V/view?usp=sharing)| English Wikipedia dump used for SentenceDebias and INLP. (Meade et al., 2021) |'data/text'|
-|Wikipedia 10 en  |[Download](https://drive.google.com/file/d/1NbQPD5236_LOUiHikMlVvi53gi07u2kE/view?usp=sharing)| English Wikipedia dump used for CDA and Dropout. (Meade et al., 2021) |'data/text'|
-|Wikipedia 2.5 fr |[Download](https://drive.google.com/file/d/12M-ClC97-HtLHol9WDtV2-EKFOi2JFBP/view?usp=sharing)| French Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
-|Wikipedia 10 fr  |[Download](https://drive.google.com/file/d/1sfzULqSeOfbBk_OKqto9tCB8ETl0cd__/view?usp=sharing)| French Wikipedia dump used for CDA and Dropout. |'data/text'|
-|Wikipedia 2.5 de |[Download](https://drive.google.com/file/d/17Xt6rZO63pdtNA4wvZ6FKkfbUzo5hchw/view?usp=sharing)| German Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
-|Wikipedia 10 de  |[Download](https://drive.google.com/file/d/1zzA-nxbQh2uP81hk4PI5gn9f3YcEVGuM/view?usp=sharing)| German Wikipedia dump used for CDA and Dropout. |'data/text'|
-|Wikipedia 2.5 nl |[Download](https://drive.google.com/file/d/1e-4iJBEkLE53ZH9NnnNi9kSAcTiy1PBp/view?usp=sharing)| Dutch Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
-|Wikipedia 10 nl  |[Download](https://drive.google.com/file/d/1PbSYTpweuyHN1oDQXqQKxx7Zyr8i2Y_I/view?usp=sharing)| Dutch Wikipedia dump used for CDA and Dropout. |'data/text'|
+|Wikipedia 2.5 en |[Download](https://drive.google.com/file/d/1nGcRFOBep_M7HjvC_qM-9JFee_rWQRQO/view?usp=sharing)| English Wikipedia dump used for SentenceDebias and INLP. (Meade et al., 2021) |'data/text'|
+|Wikipedia 10 en  |[Download](https://drive.google.com/file/d/1yQbZMGuUa3taP_xoGThRq0vkb9Kj0uC-/view?usp=sharing)| English Wikipedia dump used for CDA and Dropout. (Meade et al., 2021) |'data/text'|
+|Wikipedia 2.5 fr |[Download](https://drive.google.com/file/d/1TAQYkB9kniSX5-2IppPJR8xiTbMFRwrx/view?usp=sharing)| French Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
+|Wikipedia 10 fr  |[Download](https://drive.google.com/file/d/1HEQ-55kH4BIGBHU_84FsyMZwLg3kgwJX/view?usp=sharing)| French Wikipedia dump used for CDA and Dropout. |'data/text'|
+|Wikipedia 2.5 de |[Download](https://drive.google.com/file/d/1RRizrCShzT7yk8hRMDN6Zj-HoyfqQkPt/view?usp=sharing)| German Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
+|Wikipedia 10 de  |[Download](https://drive.google.com/file/d/1pvKXfK-oyfE-_j1M3BL4LD94XT10p4go/view?usp=sharing)| German Wikipedia dump used for CDA and Dropout. |'data/text'|
+|Wikipedia 2.5 nl |[Download](https://drive.google.com/file/d/1jCUWl0kT0TJsljeMZvZEkC4tEWjSxMM8/view?usp=sharing)| Dutch Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
+|Wikipedia 10 nl  |[Download](https://drive.google.com/file/d/1Mhn0kG2MZi36CNImBNDhiiNSXh-h9-Uc/view?usp=sharing)| Dutch Wikipedia dump used for CDA and Dropout. |'data/text'|
 
 ## Acknowledgements
 This code is based on the GitHub repository of Meade, N., Poole-Dayan, E., & Reddy, S. (2022, May). [An Empirical Survey of the Effectiveness of Debiasing Techniques for Pre-trained Language Models.](https://github.com/McGill-NLP/bias-bench/tree/main). In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 1878-1898).). arXiv preprint arXiv:2110.08527. <br>
