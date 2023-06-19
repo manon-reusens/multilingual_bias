@@ -30,15 +30,28 @@ def _load_gender_data(persistent_dir,lang_debias):
     if lang_debias=='en':
         with open(f"{persistent_dir}/data/bias_attribute_words.json", "r") as f:
             attribute_words = json.load(f)["gender"]
+        with open(f"{persistent_dir}/data/text/wikipedia-2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
+
     elif lang_debias=='fr':
         with open(f"{persistent_dir}/data/bias_attribute_words_fr.json", "r") as f:
             attribute_words = json.load(f)["gender"]
+        with open(f"{persistent_dir}/data/text/wiki-fr_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
     elif lang_debias=='de':
         with open(f"{persistent_dir}/data/bias_attribute_words_de.json", "r") as f:
             attribute_words = json.load(f)["gender"]
+        with open(f"{persistent_dir}/data/text/wiki-de_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
     elif lang_debias=='nl':
         with open(f"{persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
             attribute_words = json.load(f)["gender"]
+        with open(f"{persistent_dir}/data/text/wiki-nl_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
 
     male_biased_token_set = set([words[0] for words in attribute_words])
     female_biased_token_set = set([words[1] for words in attribute_words])
@@ -55,10 +68,6 @@ def _load_gender_data(persistent_dir,lang_debias):
     count_male_sentences = 0
     count_female_sentences = 0
     count_neutral_sentences = 0
-
-    with open(f"{persistent_dir}/data/text/wikipedia-2.5.txt", "r") as f:
-        lines = f.readlines()
-    random.shuffle(lines)
 
     for line in tqdm(lines, desc="Loading INLP data"):
         # Each line contains a paragraph of text.
@@ -241,16 +250,29 @@ def _load_religion_data(persistent_dir,lang_debias):
     # Load the bias attribute words.
     if lang_debias=='en':
         with open(f"{persistent_dir}/data/bias_attribute_words.json", "r") as f:
-            attribute_words = json.load(f)["religion"]
+            attribute_words = json.load(f)["race"]
+        with open(f"{persistent_dir}/data/text/wikipedia-2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
+
     elif lang_debias=='fr':
         with open(f"{persistent_dir}/data/bias_attribute_words_fr.json", "r") as f:
-            attribute_words = json.load(f)["religion"]
+            attribute_words = json.load(f)["race"]
+        with open(f"{persistent_dir}/data/text/wiki-fr_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
     elif lang_debias=='de':
         with open(f"{persistent_dir}/data/bias_attribute_words_de.json", "r") as f:
-            attribute_words = json.load(f)["religion"]
+            attribute_words = json.load(f)["race"]
+        with open(f"{persistent_dir}/data/text/wiki-de_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
     elif lang_debias=='nl':
         with open(f"{persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
-            attribute_words = json.load(f)["religion"]
+            attribute_words = json.load(f)["race"]
+        with open(f"{persistent_dir}/data/text/wiki-nl_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
 
     # Flatten the list of race words.
     religion_biased_token_set = set(
@@ -265,10 +287,6 @@ def _load_religion_data(persistent_dir,lang_debias):
     n_sentences = 10000
     count_religion_sentences = 0
     count_neutral_sentences = 0
-
-    with open(f"{persistent_dir}/data/text/wikipedia-2.5.txt", "r") as f:
-        lines = f.readlines()
-    random.shuffle(lines)
 
     for line in tqdm(lines, desc="Loading INLP data"):
         # Each line contains a paragraph of text.
