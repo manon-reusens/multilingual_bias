@@ -1,16 +1,16 @@
 import argparse
 import os
 import json
-
-
-import transformers
 import sys
 sys.path.append('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
 os.chdir('/data/leuven/344/vsc34470/bias-bench/multilngual_bias/')
-print(os.listdir())
+
+import torch
+import transformers
+
 from bias_bench.benchmark.crows import CrowSPairsRunner
 from bias_bench.model import models
-from bias_bench.util import generate_experiment_id, _is_generative
+from bias_bench.util import generate_experiment_id, _is_generative, _is_self_debias
 
 thisdir = os.path.dirname(os.path.realpath(__file__))
 parser = argparse.ArgumentParser(description="Runs CrowS-Pairs benchmark.")
@@ -25,13 +25,13 @@ parser.add_argument(
     "--model",
     action="store",
     type=str,
-    default="BertForMaskedLM",
+    default="SentenceDebiasBertForMaskedLM",
     choices=[
-        'dropout_mbert',
-        'cda_mbert'
+        "dropout_mbert",
+        "cda_mbert"
     ],
-    help="Model to evalute (e.g., BertForMaskedLM). Typically, these correspond to a HuggingFace "
-    "class.",
+    help="Model to evalute (e.g., SentenceDebiasBertForMaskedLM). Typically, these "
+    "correspond to a HuggingFace class.",
 )
 parser.add_argument(
     "--model_name_or_path",
@@ -44,8 +44,8 @@ parser.add_argument(
 parser.add_argument(
     "--bias_type",
     action="store",
-    default=None,
-    choices=["gender", "race", "religion","socioeconomic","sexual-orientation", "age", "nationality","disability","physical-appearance" ],
+    default="gender",
+    choices=["gender", "race", "religion", "socioeconomic", "sexual-orientation", "age", "nationality", "disability", "physical-appearance"],
     help="Determines which CrowS-Pairs dataset split to evaluate against.",
 )
 parser.add_argument(
@@ -61,7 +61,7 @@ parser.add_argument(
     action="store",
     type=int,
     default=None,
-    help="Random seed for the experiments.",
+    help="Random seed for the experiments",
 )
 parser.add_argument(
     "--lang_eval",
@@ -77,17 +77,16 @@ parser.add_argument(
     type=str,
     default='en',
     choices=['en', 'fr', 'nl', 'de' ],
-    help="Language to evaluate on.",
+    help="Language used to debias",
 )
 parser.add_argument(
     "--seed_model",
     action="store",
     type=int,
     default=0,
-    choices=[0,1,2 ],
-    help="Language to evaluate on.",
+    choices=[0,1,2],
+    help="seed of the pretrained model",
 )
-
 
 
 if __name__ == "__main__":
@@ -98,10 +97,10 @@ if __name__ == "__main__":
         model=args.model,
         #model_name_or_path=args.model_name_or_path,
         bias_type=args.bias_type,
-        sample=args.sample,
+        sample= args.sample,
         seed=args.seed,
         lang_eval=args.lang_eval,
-        lang_debias=args.lang_debias
+        lang_debias=args.lang_debias,
     )
 
     print("Running CrowS-Pairs benchmark:")
@@ -111,10 +110,12 @@ if __name__ == "__main__":
     print(f" - bias_type: {args.bias_type}")
     print(f" - sample: {args.sample}")
     print(f" - seed: {args.seed}")
-    print(f" -language: {args.lang_eval}")
+    print(f" - lang_eval: {args.lang_eval}")
+    print(f" - lang_debias: {args.lang_debias}")
+    s=''
 
-    # Load model and tokenizer.
-    model=transformers.AutoModelForMaskedLM.from_pretrained(args.model_name_or_path)
+    # Load model and tokenizer. `load_path` can be used to override `model_name_or_path`.
+    model = transformers.AutoModelForMaskedLM.from_pretrained(args.model_name_or_path)
     model.eval()
     tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path)
 
@@ -145,14 +146,14 @@ if __name__ == "__main__":
         input_file=input,
         bias_type=args.bias_type,
         is_generative=_is_generative(args.model),  # Affects model scoring.
+        is_self_debias=_is_self_debias(args.model),
         sample=args.sample,
-        seed=args.seed, 
-   )
-    results,df_data_with_masks = runner()
-
+        seed=args.seed,
+    )
+    results,df_data_with_mask_probs = runner()
     print(f"Metric: {results}")
 
     os.makedirs(f"{args.persistent_dir}/results/crows", exist_ok=True)
-    df_data_with_masks.to_csv(f"{args.persistent_dir}/results/crows/{experiment_id}_{str(args.seed_model)}.csv")
+    df_data_with_mask_probs.to_csv(f"{args.persistent_dir}/results/crows/{experiment_id}_{str(args.seed_model)}.csv")
     with open(f"{args.persistent_dir}/results/crows/{experiment_id}_{str(args.seed_model)}.json", "w") as f:
         json.dump(results, f)

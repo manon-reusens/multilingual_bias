@@ -112,7 +112,7 @@ if __name__ == "__main__":
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_fr.csv"
         else:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_fr_s{str(args.seed)}.csv"
-    elif args.lang == 'du':
+    elif args.lang == 'de':
         if args.seed==None:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_de.csv"
         else:

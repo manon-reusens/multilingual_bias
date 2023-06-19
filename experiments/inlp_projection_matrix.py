@@ -91,7 +91,7 @@ if __name__ == "__main__":
     # Load model and tokenizer.
     model = getattr(models, args.model)(args.model_name_or_path)
     model.eval()
-    tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path)
+    tokenizer = transformers.AutoTokenizer.from_pretrained(args.model_name_or_path, do_lower_case=True)
 
     projection_matrix = compute_projection_matrix(
         model,
