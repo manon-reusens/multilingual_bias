@@ -3,6 +3,8 @@ import os
 import numpy as np
 import os
 import sys
+current_dir = os.getcwd()
+sys.path.append(current_dir)
 
 import torch
 import transformers

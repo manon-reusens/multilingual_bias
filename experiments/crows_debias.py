@@ -2,6 +2,8 @@ import argparse
 import os
 import json
 import sys
+current_dir = os.getcwd()
+sys.path.append(current_dir)
 
 
 import torch
