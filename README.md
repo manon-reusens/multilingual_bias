@@ -1,4 +1,4 @@
-# multilingual_bias
+# Investigating Bias in Multilingual Language Models: Cross-Lingual Transfer of Debiasing Techniques
 This GitHub repository contains the official source code for Investigating Bias in Multilingual Language Models: Cross-Lingual Transfer of Debiasing Techniques.
 
 
