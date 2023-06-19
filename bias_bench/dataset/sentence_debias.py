@@ -214,16 +214,16 @@ class _GenericDataset(_SentenceDebiasDataset):
         #self._data_file = f"{self._root_data_dir}/{name}.txt"
         if self._lang_debias=='en':
             self._name = name
-            self._data_file = f"{self._root_data_dir}/{name}.txt"
+            self._data_file = f"{self._root_data_dir}/{self._name}.txt"
         elif self._lang_debias=='fr':
             self._name= 'wiki-fr_sample_2.5'
-            self._data_file = f"{self._root_data_dir}/{name}.txt"
+            self._data_file = f"{self._root_data_dir}/{self._name}.txt"
         elif self._lang_debias=='de':
             self._name= 'wiki-de_sample_2.5'
-            self._data_file = f"{self._root_data_dir}/{name}.txt"
+            self._data_file = f"{self._root_data_dir}/{self._name}.txt"
         elif self._lang_debias=='nl':
             self._name= 'wiki-nl_sample_2.5'
-            self._data_file = f"{self._root_data_dir}/{name}.txt"
+            self._data_file = f"{self._root_data_dir}/{self._name}.txt"
 
     def load_examples(self):
         examples = []
