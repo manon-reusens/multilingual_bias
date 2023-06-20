@@ -75,9 +75,36 @@ $                 --seed=0 \
 $                 --lang_eval='en' \
 $                 --lang_debias='fr' \
 ```
+
+## Example INLP
+For INLP, first a projection matrix should be calculated:
+```
+$python experiments/inlp_projection_matrix.py \
+$                 --persistent_dir='[path]' \
+$                 --model="BertModel" \
+$                 --model_name_or_path='bert-base-multilingual-uncased' \
+$                 --bias_type="religion" \
+$                 --n_classifiers='80' \
+$                 --seed='0' \
+$                 --lang_debias="fr" \
+```
+subsequently, you can calculate the bias metrics as follows:
+```
+$ python experiments/crows_debias.py \
+$                 --persistent_dir='[path]' \
+$                 --model="INLPBertForMaskedLM" \
+$                 --model_name_or_path='bert-base-multilingual-uncased' \
+$                 --projection_matrix='[path_to_projection_matrix]' \
+$                 --bias_type="gender"  \
+$                 --sample="false" \
+$                 --seed=0 \
+$                 --lang_eval='en' \
+$                 --lang_debias='fr' \
+```
+
 ## Example CDA & Dropout
 
-For CDA, first an additional pretraining step should be executed in a language of your choice, for example French:
+For CDA, first, an additional pretraining step should be executed in a language of your choice, for example French:
 ```
 $ python  experiments/run_mlm.py \
 $                    --model_name_or_path "bert-base-multilingual-uncased" \
