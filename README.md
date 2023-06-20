@@ -38,15 +38,32 @@ To evaluate the models, the following files can be used
 * crows_dropout_cda.py
 
 ## Example
-Here follows an example of how to calculate the bias direction for SentenceDebias using mBERT.
+Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT.
 ```
 $ python experiments/sentence_debias_subspace.py \
-$                 --persistent_dir=[add_path] \
+$                 --persistent_dir=[path] \
 $                 --model="BertModel" \
 $                 --model_name_or_path='bert-base-multilingual-uncased'  \
 $                 --bias_type="gender" \
 $                 --lang_debias='fr' \
 ```
+Once you have the bias direction, you can calculate the bias metrics for the different languages as follows. Here is an example of calculating it for the English subsample 0: 
+
+```
+$ python experiments/crows_debias.py \
+$                 --persistent_dir='[path]' \
+$                 --model "SentenceDebiasBertForMaskedLM" \
+$                 --model_name_or_path 'bert-base-multilingual-uncased' \
+$                 --bias_direction '[path]/results/subspace/subspace_m-BertModel_c-bert-base-multilingual-uncased_t-gender_debias-fr.pt' \
+$                 --bias_type "gender"  \
+$                 --sample="false" \
+$                 --seed=0 \
+$                 --lang_eval='en' \
+$                 --lang_debias='fr' \
+```
+
+
+
 
 ## Acknowledgements
 This code is based on the GitHub repository of Meade, N., Poole-Dayan, E., & Reddy, S. (2022, May). [An Empirical Survey of the Effectiveness of Debiasing Techniques for Pre-trained Language Models.](https://github.com/McGill-NLP/bias-bench/tree/main). In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 1878-1898).). arXiv preprint arXiv:2110.08527. <br>
