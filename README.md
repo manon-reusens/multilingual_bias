@@ -23,7 +23,7 @@ For the different debiasing techniques, different wikipedia data is required. Th
 |Wikipedia 2.5 nl |[Download](https://drive.google.com/file/d/1jCUWl0kT0TJsljeMZvZEkC4tEWjSxMM8/view?usp=sharing)| Dutch Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
 |Wikipedia 10 nl  |[Download](https://drive.google.com/file/d/1Mhn0kG2MZi36CNImBNDhiiNSXh-h9-Uc/view?usp=sharing)| Dutch Wikipedia dump used for CDA and Dropout. |'data/text'|
 
-## Use
+## Experiments
 The different experiments can be found in the 'experiments' directory. Using the following three files, the bias directions/projection matrices for densray, sentencedebias, and inlp can be calculated.
 * densray_subspace.py
 * sentencedebias_subspace.py 
