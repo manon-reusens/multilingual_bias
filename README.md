@@ -51,7 +51,7 @@ $                 --seed=0 \
 $                 --lang='en' \
 ```
 
-## Example SentenceDebias
+## Example SentenceDebias & DensRay
 Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT. DensRay and INLP work similarly.
 ```
 $ python experiments/sentence_debias_subspace.py \
@@ -75,7 +75,7 @@ $                 --seed=0 \
 $                 --lang_eval='en' \
 $                 --lang_debias='fr' \
 ```
-## Example CDA
+## Example CDA & Dropout
 
 For CDA, first an additional pretraining step should be executed in a language of your choice, for example French:
 ```
