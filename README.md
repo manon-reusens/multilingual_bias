@@ -37,8 +37,10 @@ To evaluate the models, the following files can be used
 * crows_debias.py
 * crows_dropout_cda.py
 
+For all experiments, the following vocabulary seeds are used: 0, 1, 2
+
 ## Example No Debiasing
-The results of mBERT on the different datasets can be calculated as follows.
+The results of mBERT on the different datasets can be calculated as follows. To get full results, all bias types and all seeds of the datasets should be run. 
 
 ```
 $ python experiments/crows.py \
