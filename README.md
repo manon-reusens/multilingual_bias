@@ -52,7 +52,7 @@ $                 --lang='en' \
 ```
 
 ## Example SentenceDebias & DensRay
-Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT. DensRay and INLP work similarly.
+Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT. For DensRay, 'sentence_debias_subspace.py' should be changed by 'densray_subspace.py'.
 ```
 $ python experiments/sentence_debias_subspace.py \
 $                 --persistent_dir=[path] \
@@ -61,14 +61,14 @@ $                 --model_name_or_path='bert-base-multilingual-uncased'  \
 $                 --bias_type="gender" \
 $                 --lang_debias='fr' \
 ```
-Once you have the bias direction, you can calculate the bias metrics for the different languages as follows. Here is an example of calculating it for the English subsample 0: 
+Once you have the bias direction, you can calculate the bias metrics for the different languages as follows. For DensRay, 'SentenceDebiasBertForMaskedLM' should be changed by 'DensrayDebiasBertForMaskedLM'
 
 ```
 $ python experiments/crows_debias.py \
 $                 --persistent_dir='[path]' \
 $                 --model "SentenceDebiasBertForMaskedLM" \
 $                 --model_name_or_path 'bert-base-multilingual-uncased' \
-$                 --bias_direction '[path]/results/subspace/subspace_m-BertModel_c-bert-base-multilingual-uncased_t-gender_debias-fr.pt' \
+$                 --bias_direction '[path_to_bias_direction]' \
 $                 --bias_type "gender"  \
 $                 --sample="false" \
 $                 --seed=0 \
