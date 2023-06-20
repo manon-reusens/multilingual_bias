@@ -23,6 +23,20 @@ For the different debiasing techniques, different wikipedia data is required. Th
 |Wikipedia 2.5 nl |[Download](https://drive.google.com/file/d/1jCUWl0kT0TJsljeMZvZEkC4tEWjSxMM8/view?usp=sharing)| Dutch Wikipedia dump used for SentenceDebias and INLP. |'data/text'|
 |Wikipedia 10 nl  |[Download](https://drive.google.com/file/d/1Mhn0kG2MZi36CNImBNDhiiNSXh-h9-Uc/view?usp=sharing)| Dutch Wikipedia dump used for CDA and Dropout. |'data/text'|
 
+## Use
+The different experiments can be found in the 'experiments' directory. Using the following three files, the bias directions/projection matrices for densray, sentencedebias, and inlp can be calculated.
+* densray_subspace.py: 
+* sentencedebias_subspace.py: 
+* inlp_projection_matrix.py:
+Using this file, the additional pretraining step is executed for CDA/ dropout regularization.
+* run_mlm.py:
+
+To evaluate the models, the following files can be used
+* crows.py: 
+* crows_debias.py: 
+* crows_dropout_cda.py: 
+
+
 ## Acknowledgements
 This code is based on the GitHub repository of Meade, N., Poole-Dayan, E., & Reddy, S. (2022, May). [An Empirical Survey of the Effectiveness of Debiasing Techniques for Pre-trained Language Models.](https://github.com/McGill-NLP/bias-bench/tree/main). In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 1878-1898).). arXiv preprint arXiv:2110.08527. <br>
 Moreover, this code contains code of Sheng Liang, Philipp Dufter, and Hinrich Schütze. 2020. [Monolingual and Multilingual Reduction of Gender Bias in Contextualized Representations.](https://github.com/liangsheng02/densray-debiasing/tree/publish) In Proceedings of the 28th International Conference on Computational Linguistics, pages 5082–5093, Barcelona, Spain (Online). International Committee on Computational Linguistics.
