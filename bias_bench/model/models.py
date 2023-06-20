@@ -78,7 +78,7 @@ class _SentenceDebiasModel:
             x = output["last_hidden_state"]
 
             # Ensure that everything is on the same device.
-            bias_direction = bias_direction[1].to(x.device)
+            bias_direction = bias_direction.to(x.device)
 
             # Debias the representation.
             for t in range(x.size(1)):
