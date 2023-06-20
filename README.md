@@ -37,6 +37,20 @@ To evaluate the models, the following files can be used
 * crows_debias.py
 * crows_dropout_cda.py
 
+## Example No Debiasing
+The results of mBERT on the different datasets can be calculated as follows.
+
+```
+$ python experiments/crows.py \
+$                 --persistent_dir="[path]" \
+$                 --model="BertForMaskedLM" \
+$                 --model_name_or_path='bert-base-multilingual-uncased' \
+$                 --bias_type="race" \
+$                 --sample="false" \
+$                 --seed=0 \
+$                 --lang='en' \
+```
+
 ## Example SentenceDebias
 Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT. DensRay and INLP work similarly.
 ```
@@ -61,9 +75,42 @@ $                 --seed=0 \
 $                 --lang_eval='en' \
 $                 --lang_debias='fr' \
 ```
+## Example CDA
 
+For CDA, first an additional pretraining step should be executed in a language of your choice, for example French:
+```
+$ python  experiments/run_mlm.py \
+$                    --model_name_or_path "bert-base-multilingual-uncased" \
+$                    --cache_dir "[path]/cache/" \
+$                    --do_train \
+$                    --train_file "data/text/wiki-fr_sample_10.txt" \
+$                    --validation_split_percentage 0 \
+$                    --max_steps 2000 \
+$                    --per_device_train_batch_size 4 \
+$                    --gradient_accumulation_steps 128 \
+$                    --max_seq_length 512 \
+$                    --save_steps 500 \
+$                    --preprocessing_num_workers 4 \
+$                    --counterfactual_augmentation "race" \
+$                    --persistent_dir "[path]" \
+$                    --seed  0 \
+$                    --output_dir "[path_to_dir]"
 
-
+```
+For dropout regularization, '--counterfactual_augmentation "race" \' should be changed by ' --dropout_debias \'
+Once you have your trained model, you use:
+```
+$python experiments/crows_dropout_cda.py \
+$                 --persistent_dir="[path]" \
+$                 --model="dropout_mbert" \
+$                 --model_name_or_path='[path_to_dir]' \
+$                 --bias_type="gender" \
+$                 --sample='false' \
+$                 --seed=0 \
+$                 --lang_eval='en' \
+$                 --lang_debias='fr' \
+$                 --seed_model=0 \
+```
 
 ## Acknowledgements
 This code is based on the GitHub repository of Meade, N., Poole-Dayan, E., & Reddy, S. (2022, May). [An Empirical Survey of the Effectiveness of Debiasing Techniques for Pre-trained Language Models.](https://github.com/McGill-NLP/bias-bench/tree/main). In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 1878-1898).). arXiv preprint arXiv:2110.08527. <br>
