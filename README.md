@@ -48,7 +48,7 @@ $                 --model_name_or_path='bert-base-multilingual-uncased' \
 $                 --bias_type="race" \
 $                 --sample="false" \
 $                 --seed=0 \
-$                 --lang='en' \
+$                 --lang='fr' \
 ```
 
 ## Example SentenceDebias & DensRay
