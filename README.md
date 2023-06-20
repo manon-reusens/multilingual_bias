@@ -37,8 +37,8 @@ To evaluate the models, the following files can be used
 * crows_debias.py
 * crows_dropout_cda.py
 
-## Example
-Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT.
+## Example SentenceDebias
+Here follows an example of how to calculate the bias direction for SentenceDebias in French using mBERT. DensRay and INLP work similarly.
 ```
 $ python experiments/sentence_debias_subspace.py \
 $                 --persistent_dir=[path] \
