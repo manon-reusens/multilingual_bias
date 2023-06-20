@@ -25,17 +25,28 @@ For the different debiasing techniques, different wikipedia data is required. Th
 
 ## Use
 The different experiments can be found in the 'experiments' directory. Using the following three files, the bias directions/projection matrices for densray, sentencedebias, and inlp can be calculated.
-* densray_subspace.py: 
-* sentencedebias_subspace.py: 
-* inlp_projection_matrix.py:
+* densray_subspace.py
+* sentencedebias_subspace.py 
+* inlp_projection_matrix.py
+
 Using this file, the additional pretraining step is executed for CDA/ dropout regularization.
-* run_mlm.py:
+* run_mlm.py
 
 To evaluate the models, the following files can be used
-* crows.py: 
-* crows_debias.py: 
-* crows_dropout_cda.py: 
+* crows.py
+* crows_debias.py
+* crows_dropout_cda.py
 
+## Example
+Here follows an example of how to calculate the bias direction for SentenceDebias using mBERT.
+```
+$ python experiments/sentence_debias_subspace.py \
+$                 --persistent_dir=[add_path] \
+$                 --model="BertModel" \
+$                 --model_name_or_path='bert-base-multilingual-uncased'  \
+$                 --bias_type="gender" \
+$                 --lang_debias='fr' \
+```
 
 ## Acknowledgements
 This code is based on the GitHub repository of Meade, N., Poole-Dayan, E., & Reddy, S. (2022, May). [An Empirical Survey of the Effectiveness of Debiasing Techniques for Pre-trained Language Models.](https://github.com/McGill-NLP/bias-bench/tree/main). In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 1878-1898).). arXiv preprint arXiv:2110.08527. <br>
