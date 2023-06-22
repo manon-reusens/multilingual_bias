@@ -165,8 +165,7 @@ if __name__ == "__main__":
         projection_matrix = torch.load(args.projection_matrix)
         kwargs["projection_matrix"] = projection_matrix
         k=args.projection_matrix
-        s=k.replace('/scratch/leuven/344/vsc34470/bias-eval/results/projection_matrix/projection_m-BertModel_c-bert-base-multilingual-uncased_t-','')
-        s=s.replace('.pt','')
+        s=k.replace('.pt','')
 
     # Load model and tokenizer. `load_path` can be used to override `model_name_or_path`.
     model = getattr(models, args.model)(
