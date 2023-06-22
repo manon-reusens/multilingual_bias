@@ -167,7 +167,6 @@ if __name__ == "__main__":
         k=args.projection_matrix
         s=k.replace('.pt','')
         s=s.replace('/','')
-        #s=s.replace('\','')
 
     # Load model and tokenizer. `load_path` can be used to override `model_name_or_path`.
     model = getattr(models, args.model)(
