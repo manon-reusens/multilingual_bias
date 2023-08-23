@@ -109,7 +109,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=['en', 'fr', 'nl', 'de' ],
+    choices=['en', 'fr', 'nl', 'de','pl','ru' ],
     help="Language to evaluate on.",
 )
 parser.add_argument(
@@ -117,7 +117,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=['en', 'fr', 'nl', 'de' ],
+    choices=['en', 'fr', 'nl', 'de','pl','ru' ],
     help="Language used to debias",
 )
 
@@ -200,6 +200,16 @@ if __name__ == "__main__":
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_nl.csv"
         else:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_nl_s{str(args.seed)}.csv"
+    elif args.lang == 'pl':
+        if args.seed==None:
+            input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_pl.csv"
+        else:
+            input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_pl_s{str(args.seed)}.csv"
+    elif args.lang == 'ru':
+        if args.seed==None:
+            input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ru.csv"
+        else:
+            input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ru_s{str(args.seed)}.csv"
 
     runner = CrowSPairsRunner(
         model=model,
