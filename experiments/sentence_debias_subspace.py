@@ -58,7 +58,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=["nl", "en", "de", "fr","pl","ru"],
+    choices=["nl", "en", "de", "fr","pl","ru","ca"],
     required=True,
     help="The language the bias is mitigated in.",
 )
