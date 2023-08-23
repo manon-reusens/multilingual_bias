@@ -713,6 +713,10 @@ def main():
             bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_de.json", bias_type=data_args.counterfactual_augmentation)
         elif 'wiki-nl_sample_10.txt' in data_args.train_file:
             bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_nl.json", bias_type=data_args.counterfactual_augmentation)
+        elif 'wiki-pl_sample_10.txt' in data_args.train_file:
+            bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_pl.json", bias_type=data_args.counterfactual_augmentation)
+        elif 'wiki-ru_sample_10.txt' in data_args.train_file:
+            bias_attribute_words= _create_bias_attribute_words(f"{data_args.persistent_dir}/data/bias_attribute_words_ru.json", bias_type=data_args.counterfactual_augmentation)
         else:
             print('The given train text file is unknown.')
 
