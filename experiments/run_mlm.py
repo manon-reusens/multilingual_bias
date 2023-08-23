@@ -577,6 +577,7 @@ def main():
               The current set of words is *not* exhaustive, however, it should
               cover most occurances.
         """
+        print('now we will try to load in')
         with open(attribute_file, "r") as f:
             bias_attribute_words = json.load(f)[bias_type]
 
