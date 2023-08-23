@@ -64,6 +64,12 @@ def _load_gender_data(persistent_dir,lang_debias):
         with open(f"{persistent_dir}/data/text/wiki-ru_sample_2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
+    elif lang_debias=='ca':
+        with open(f"{persistent_dir}/data/bias_attribute_words_ca.json", "r") as f:
+            attribute_words = json.load(f)["gender"]
+        with open(f"{persistent_dir}/data/text/wiki-ca_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
 
     male_biased_token_set = set([words[0] for words in attribute_words])
     female_biased_token_set = set([words[1] for words in attribute_words])
@@ -206,6 +212,12 @@ def _load_race_data(persistent_dir,lang_debias):
         with open(f"{persistent_dir}/data/text/wiki-ru_sample_2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
+    elif lang_debias=='ca':
+        with open(f"{persistent_dir}/data/bias_attribute_words_ca.json", "r") as f:
+            attribute_words = json.load(f)["race"]
+        with open(f"{persistent_dir}/data/text/wiki-ca_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
 
     # Flatten the list of race words.
     race_biased_token_set = set([word for words in attribute_words for word in words])
@@ -307,6 +319,12 @@ def _load_religion_data(persistent_dir,lang_debias):
         with open(f"{persistent_dir}/data/bias_attribute_words_ru.json", "r") as f:
             attribute_words = json.load(f)["religion"]
         with open(f"{persistent_dir}/data/text/wiki-ru_sample_2.5.txt", "r") as f:
+            lines = f.readlines()
+        random.shuffle(lines)
+    elif lang_debias=='ca':
+        with open(f"{persistent_dir}/data/bias_attribute_words_ca.json", "r") as f:
+            attribute_words = json.load(f)["religion"]
+        with open(f"{persistent_dir}/data/text/wiki-ca_sample_2.5.txt", "r") as f:
             lines = f.readlines()
         random.shuffle(lines)
 
