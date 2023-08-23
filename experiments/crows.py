@@ -72,7 +72,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=['en', 'fr', 'nl', 'de','pl','ru' ],
+    choices=['en', 'fr', 'nl', 'de','pl','ru','ca' ],
     help="Language to evaluate on.",
 )
 
@@ -134,6 +134,11 @@ if __name__ == "__main__":
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ru.csv"
         else:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ru_s{str(args.seed)}.csv"
+    elif args.lang == 'ca':
+        if args.seed==None:
+            input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ca.csv"
+        else:
+            input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ca_s{str(args.seed)}.csv"
 
     runner = CrowSPairsRunner(
         model=model,
