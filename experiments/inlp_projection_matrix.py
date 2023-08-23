@@ -60,7 +60,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=['en','nl','de','fr'],
+    choices=['en','nl','de','fr','pl','ru'],
     help="Batch size to use while encoding.",
 )
 
