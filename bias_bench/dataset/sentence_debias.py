@@ -163,6 +163,13 @@ class _SentenceDebiasDataset:
         elif self._lang_debias =='nl':
             with open(f"{self._persistent_dir}/data/bias_attribute_words_nl.json", "r") as f:
                 self._attribute_words = json.load(f)[self._bias_type]
+        elif self._lang_debias =='pl':
+            with open(f"{self._persistent_dir}/data/bias_attribute_words_pl.json", "r") as f:
+                self._attribute_words = json.load(f)[self._bias_type]
+                print(self._attribute_words)
+        elif self._lang_debias =='ru':
+            with open(f"{self._persistent_dir}/data/bias_attribute_words_ru.json", "r") as f:
+                self._attribute_words = json.load(f)[self._bias_type]
 
     def load_examples(self):
         raise NotImplementedError("load_examples method not implemented.")
@@ -223,6 +230,12 @@ class _GenericDataset(_SentenceDebiasDataset):
             self._data_file = f"{self._root_data_dir}/{self._name}.txt"
         elif self._lang_debias=='nl':
             self._name= 'wiki-nl_sample_2.5'
+            self._data_file = f"{self._root_data_dir}/{self._name}.txt"
+        elif self._lang_debias=='pl':
+            self._name= 'wiki-pl_sample_2.5'
+            self._data_file = f"{self._root_data_dir}/{self._name}.txt"
+        elif self._lang_debias=='ru':
+            self._name= 'wiki-ru_sample_2.5'
             self._data_file = f"{self._root_data_dir}/{self._name}.txt"
 
     def load_examples(self):
