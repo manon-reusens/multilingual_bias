@@ -58,7 +58,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=['en','nl','de','fr','pl','ru'],
+    choices=['en','nl','de','fr','pl','ru','ca'],
     help="Batch size to use while encoding.",
 )
 parser.add_argument(
