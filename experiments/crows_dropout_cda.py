@@ -76,7 +76,7 @@ parser.add_argument(
     action="store",
     type=str,
     default='en',
-    choices=['en', 'fr', 'nl', 'de', 'pl', 'ru',ca' ],
+    choices=['en', 'fr', 'nl', 'de', 'pl', 'ru','ca' ],
     help="Language used to debias",
 )
 parser.add_argument(
