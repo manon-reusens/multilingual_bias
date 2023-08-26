@@ -200,17 +200,17 @@ if __name__ == "__main__":
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_nl.csv"
         else:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_nl_s{str(args.seed)}.csv"
-    elif args.lang == 'pl':
+    elif args.lang_eval == 'pl':
         if args.seed==None:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_pl.csv"
         else:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_pl_s{str(args.seed)}.csv"
-    elif args.lang == 'ru':
+    elif args.lang_eval == 'ru':
         if args.seed==None:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ru.csv"
         else:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ru_s{str(args.seed)}.csv"
-    elif args.lang == 'ca':
+    elif args.lang_eval == 'ca':
         if args.seed==None:
             input=f"{args.persistent_dir}/data/crows/crows_pairs_anonymized_ca.csv"
         else:
